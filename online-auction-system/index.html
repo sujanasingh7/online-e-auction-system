@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Auction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>Live Auctions</h1>
+
+<a href="/create">Create Auction</a>
+<a href="/login">Login</a>
+<a href="/register">Register</a>
+
+{% for a in auctions %}
+<div>
+    <h3>{{ a[1] }}</h3>
+    <p>Price: ₹{{ a[2] }}</p>
+
+    <form action="/bid/{{ a[0] }}" method="post">
+        <input type="number" name="bid" required>
+        <button type="submit">Bid</button>
+    </form>
+</div>
+{% endfor %}
+
+</body>
+</html>
